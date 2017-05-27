@@ -33,7 +33,7 @@ try:
     )
     expected_token = response['Parameters'][0]['Value']
 except:
-    return respond(Exception('Failed to fetch token'))
+    respond(Exception('Failed to fetch token'))
 
 
 def get_param(params, key, default=None):
