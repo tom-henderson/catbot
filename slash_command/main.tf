@@ -3,6 +3,12 @@ variable "region" {}
 variable "source_code" {}
 data "aws_caller_identity" "current" {}
 
+# Cloudwatch
+resource "aws_cloudwatch_log_group" "logs" {
+  name                     = "/aws/lambda/${var.name}"
+  retention_in_days = 1
+}
+
 # IAM
 resource "aws_iam_role" "lambda" {
   name = "${var.name}_iam_role"
@@ -24,6 +30,14 @@ data "aws_iam_policy_document" "lambda" {
   statement {
     actions   = ["ssm:GetParameters"]
     resources = ["arn:aws:ssm:${var.region}:${data.aws_caller_identity.current.account_id}:parameter/${var.name}_slash_command_token"]
+  }
+
+  statement {
+    actions   = [
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ]
+    resources = ["${aws_cloudwatch_log_group.logs.arn}"]
   }
 }
 
