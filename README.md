@@ -10,7 +10,7 @@
 8. Copy the token string from the integration settings and use it in the next section.
 9. Add the slash command token to the parameter store with:
 
-   `aws ssm put-parameter --name "catbot_slack_command_token" --type "SecureString" --value "<TOKEN>"`
+   `aws ssm put-parameter --name "catbot_slash_command_token" --type "SecureString" --value "<TOKEN>"`
 
 10. Talk to catbot
 
