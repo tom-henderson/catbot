@@ -7,7 +7,7 @@ from urlparse import parse_qs
 
 import boto3
 
-token_parameter = 'catbot_slash_command_token'
+token_parameter = os.environ['token_parameter']
 image_url = "http://thecatapi.com/api/images/get?format=xml"
 fact_url = "http://catfacts-api.appspot.com/api/facts"
 
